@@ -14,7 +14,7 @@ class Commercial_drug extends Model
     protected $table="commercial_drugs";
     protected $filliable = [
         'id', 'name', 'register_no', 'drug_entrance','photo',
-        'how_use', 'drug_form', 'side_effects', 'agent_id','company_id'
+        'how_use', 'drug_form', 'side_effects', 'agent_id','company_id','prevents_use'
     ];
     public $timestamps=false;
     protected $primaryKey = 'id';

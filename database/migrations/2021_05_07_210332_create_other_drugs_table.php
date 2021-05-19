@@ -19,7 +19,7 @@ class CreateOtherDrugsTable extends Migration
             $table->string('dosage',40);
             $table->date('start_use_date');
             $table->date('end_use_date');
-            $table->string('purpose_use',40);
+            $table->longText('purpose_use');
             $table->foreignId('side_effect_id')->constrained('side_effects')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
