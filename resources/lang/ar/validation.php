@@ -188,6 +188,7 @@ return [
         'doctorhospital'       => 'مستشفيي الطبيب',
         'doctorphone'          => 'رقم هاتف الطبيب',
         'relativerealtion'     => 'صلة القرابة',
-        'image'                => 'الصورة'
+        'image'                => 'الصورة',
+        'batch_num'            => 'الرقم المميز'
     ],
 ];

@@ -1,298 +1,64 @@
-{{--sidebarMenu--}}
-<nav id="sidebarMenu" class="col-md-4 col-lg-2 d-md-block">
-    <div class="position-fixed pt-4  border-bottom">
-        @if(auth()->user()->hasRole('مدير العمليات'))
-            <ul class="nav flex-column">
+  <!-- Top navigation-->
+  <nav class="navbar navbar-expand-lg navbar-dark   " >
+    <div class="container-fluid">
+        <button class=" header_toggle  " id="sidebarToggle"><i class="bx bx-menu" id="header-toggle"></i></button>
+        <button class="navbar-toggler rounded-navbar" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class='bx bx-dots-vertical-rounded'></i></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                <!-- <li class="nav-item active"><a class="nav-link" href="#!">Home</a></li> -->
+                <!-- <li class="nav-item"><a class="nav-link" href="#!">Link</a></li> -->
+                @guest
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{route('home')}}">
-                        <i class="fas fa-home"></i>
-                        <span data-feather="file" class="ml-2"> الرئيسية </span>
-                    </a>
+                    <a class="nav-link" href="{{ route('login') }}">تسجيل الدخول</a>
                 </li>
-                <li class="nav-item " >
-                    <a class="nav-link active " aria-current="page" href="{{route('OP_newReports')}}">
-                        <i class="fas fa-inbox "></i>
-                        <span data-feather="file" class="ml-2">بلاغات وارده</span>
-                        <i class="fas fa-caret-down ml-3 dropdown "></i>
-                    </a>
-                    <ul class="UL">
-                        <li class="nav-item " >
-                            <a class="nav-link active " aria-current="page" href="{{route('OP_newSmuggledReports')}}">
-                                <i class="far fa-newspaper"></i>
-                                <span data-feather="file" class="ml-2">مهرب</span>
+                @else
+                <li class="nav-item dropdown">
+
+
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class='bx bx-user'></i>  {{ Auth::user()->name }}</a>
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">الملف الشخصي</a>
+                        <a class="dropdown-item" href="#">تعديل</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                               تسجيل الخروج
                             </a>
-                        </li>
-                        <li class="nav-item " >
-                            <a class="nav-link active " aria-current="page" href="{{route('OP_newDrownReports')}}">
-                                <i class="far fa-newspaper"></i>
-                                <span data-feather="file" class="ml-2">مسحوب</span>
-                            </a>
-                        </li>
-                        <li class="nav-item " >
-                            <a class="nav-link active " aria-current="page" href="{{route('OP_newDiffrentReports')}}">
-                                <i class="far fa-newspaper"></i>
-                                <span data-feather="file" class="ml-2">غير مطابق</span>
-                            </a>
-                        </li>
-                        <li class="nav-item " >
-                            <a class="nav-link active " aria-current="page" href="{{route('OP_newExceptionReports')}}">
-                                <i class="far fa-newspaper"></i>
-                                <span data-feather="file" class="ml-2">مستثناء</span>
-                            </a>
-                        </li>
-                    </ul>
+                    </div>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{route('OP_addReport')}}">
-                        <i class="fas fa-plus "></i>
-                        <span data-feather="file" class="ml-2"> إضافة بلاغ جديد</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active " aria-current="page" href="{{route('OP_followReports')}}">
-                        <i class="fas fa-chalkboard-teacher "></i>
-                        <span data-feather="file" class="ml-2">إدارة ومتابعه</span>
-                        <i class="fas fa-caret-down ml-1 dropdown "></i>
-                    </a>
-                    <ul class="UL">
-                        <li class="nav-item " >
-                            <a class="nav-link active " aria-current="page" href="{{route('OP_transferFollowingReports')}}">
-                                <i class="fas fa-angle-left"></i>
-                                <span data-feather="file" class="ml-2">محول للمتابعة</span>
-                            </a>
-                        </li>
-                        <li class="nav-item " >
-                            <a class="nav-link active " aria-current="page" href="{{route('OP_followingReports')}}">
-                                <i class="fas fa-angle-left"></i>
-                                <span data-feather="file" class="ml-2">قيد المتابعة</span>
-                            </a>
-                        </li>
-                        <li class="nav-item " >
-                            <a class="nav-link active " aria-current="page" href="{{route('OP_followDoneReports')}}">
-                                <i class="fas fa-angle-left"></i>
-                                <span data-feather="file" class="ml-2">تم متابعتها</span>
-                            </a>
-                        </li>
-                        <li class="nav-item " >
-                            <a class="nav-link active " aria-current="page" href="{{route('OP_doneReports')}}">
-                                <i class="fas fa-angle-left"></i>
-                                <span data-feather="file" class="ml-2">تم انهائها</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">
-                        <i class="fas fa-file-contract "></i>
-                        <span data-feather="file" class="ml-2">التقارير</span>
-                    </a>
-                </li>
-            </ul>
-        @elseif(auth()->user()->hasRole('مدير الصيدلة'))
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{route('home')}}">
-                        <i class="fas fa-home"></i>
-                        <span data-feather="file" class="ml-2"> الرئيسية </span>
-                    </a>
-                </li>
-                <li class="nav-item " >
-                    <a class="nav-link active " aria-current="page" href="{{route('PM_newReports')}}">
-                        <i class="fas fa-inbox"></i>
-                        <span data-feather="file" class="ml-2">بلاغات وارده</span>
-                        <i class="fas fa-caret-down ml-3 dropdown "></i>
-                    </a>
-                    <ul class="UL">
-                        <li class="nav-item " >
-                            <a class="nav-link active " aria-current="page" href="{{route('PM_newSmuggledReports')}}">
-                                <i class="far fa-newspaper"></i>
-                                <span data-feather="file" class="ml-2">مهرب</span>
-                            </a>
-                        </li>
-                        <li class="nav-item " >
-                            <a class="nav-link active " aria-current="page" href="{{route('PM_newDrownReports')}}">
-                                <i class="far fa-newspaper"></i>
-                                <span data-feather="file" class="ml-2">مسحوب</span>
-                            </a>
-                        </li>
-                        <li class="nav-item " >
-                            <a class="nav-link active " aria-current="page" href="{{route('PM_newDifferentReports')}}">
-                                <i class="far fa-newspaper"></i>
-                                <span data-feather="file" class="ml-2">غير مطابق</span>
-                            </a>
-                        </li>
-                        <li class="nav-item " >
-                            <a class="nav-link active " aria-current="page" href="{{route('PM_newExceptionReports')}}">
-                                <i class="far fa-newspaper"></i>
-                                <span data-feather="file" class="ml-2">مستثناء</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{route('PM_drug')}}">
-                        <i class="fas fa-plus"></i>
-                        <span data-feather="file" class="ml-2">إضافة دواء جديد</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active " aria-current="page" href="{{route('PM_followReports')}}">
-                        <i class="fas fa-chalkboard-teacher "></i>
-                        <span data-feather="file" class="ml-2">متابعةالبلاغات</span>
-                        <i class="fas fa-caret-down ml-2 dropdown "></i>
-                    </a>
-                    <ul class="UL">
-                        <li class="nav-item " >
-                            <a class="nav-link active " aria-current="page" href="{{route('PM_followingReports')}}">
-                                <i class="fas fa-angle-left"></i>
-                                <span data-feather="file" class="ml-2">قيد المتابعة</span>
-                            </a>
-                        </li>
-                        <li class="nav-item " >
-                            <a class="nav-link active " aria-current="page" href="{{route('PM_followDoneReports')}}">
-                                <i class="fas fa-angle-left"></i>
-                                <span data-feather="file" class="ml-2">تم متابعتها</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">
-                        <i class="fas fa-file-contract"></i>
-                        <span data-feather="file" class="ml-2">التقارير</span>
-                    </a>
-                </li>
-            </ul>
-        @elseif(auth()->user()->hasRole('مدير التيقظ الدوائي'))
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{route('home')}}">
-                        <i class="fas fa-home"></i>
-                        <span data-feather="file" class="ml-2"> الرئيسية </span>
-                    </a>
-                </li>
-                <li class="nav-item " >
-                    <a class="nav-link active " aria-current="page" href="{{route('PHC_newReports')}}">
-                        <i class="fas fa-inbox "></i>
-                        <span data-feather="file" class="ml-2">بلاغات وارده</span>
-                        <i class="fas fa-caret-down ml-3 dropdown "></i>
-                    </a>
-                    <ul class="UL">
-                        <li class="nav-item " >
-                            <a class="nav-link active " aria-current="page" href="{{route('PHC_newEffectReports')}}">
-                                <i class="far fa-newspaper"></i>
-                                <span data-feather="file" class="ml-2">اعراض جانبية</span>
-                            </a>
-                        </li>
-                        <li class="nav-item " >
-                            <a class="nav-link active " aria-current="page" href="{{route('PHC_newQualityReports')}}">
-                                <i class="far fa-newspaper"></i>
-                                <span data-feather="file" class="ml-2">جودة</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active " aria-current="page" href="{{route('PHC_followReports')}}">
-                        <i class="fas fa-chalkboard-teacher "></i>
-                        <span data-feather="file" class="ml-2">إدارة ومتابعه</span>
-                        <i class="fas fa-caret-down ml-1 dropdown "></i>
-                    </a>
-                    <ul class="UL">
-                        <li class="nav-item " >
-                            <a class="nav-link active " aria-current="page" href="{{route('PHC_followingReports')}}">
-                                <i class="far fa-newspaper"></i>
-                                <span data-feather="file" class="ml-2">قيد المتابعة</span>
-                            </a>
-                        </li>
-                        <li class="nav-item " >
-                            <a class="nav-link active " aria-current="page" href="{{route('PHC_doneReports')}}">
-                                <i class="far fa-newspaper"></i>
-                                <span data-feather="file" class="ml-2">تم انهائها</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">
-                        <i class="fas fa-file-contract "></i>
-                        <span data-feather="file" class="ml-2">التقارير</span>
-                    </a>
-                </li>
-            </ul>
-        @elseif(auth()->user()->hasRole('المدير العام'))
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{route('home')}}">
-                        <i class="fas fa-home"></i>
-                        <span data-feather="file" class="ml-2"> الرئيسية </span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active " aria-current="page" href="{{route('showReports')}}">
-                        <i class="fas fa-chalkboard-teacher "></i>
-                        <span data-feather="file" class="ml-2">إدارة ومتابعه</span>
-                        <i class="fas fa-caret-down ml-1 dropdown "></i>
-                    </a>
-                    <ul class="UL">
-                        <li class="nav-item " >
-                            <a class="nav-link active " aria-current="page" href="{{route('showNewReports')}}">
-                                <i class="far fa-newspaper"></i>
-                                <span data-feather="file" class="ml-2">وارده</span>
-                            </a>
-                        </li>
-                        <li class="nav-item " >
-                            <a class="nav-link active " aria-current="page" href="{{route('showTransferReports')}}">
-                                <i class="far fa-newspaper"></i>
-                                <span data-feather="file" class="ml-2">محول للمتابعة</span>
-                            </a>
-                        </li>
-                        <li class="nav-item " >
-                            <a class="nav-link active " aria-current="page" href="{{route('showFollowingReports')}}">
-                                <i class="far fa-newspaper"></i>
-                                <span data-feather="file" class="ml-2">قيد المتابعة</span>
-                            </a>
-                        </li>
-                        <li class="nav-item " >
-                            <a class="nav-link active " aria-current="page" href="{{route('showFollowDoneReports')}}">
-                                <i class="far fa-newspaper"></i>
-                                <span data-feather="file" class="ml-2">تم متابعتها</span>
-                            </a>
-                        </li>
-                        <li class="nav-item " >
-                            <a class="nav-link active " aria-current="page" href="{{route('showDoneReports')}}">
-                                <i class="far fa-newspaper"></i>
-                                <span data-feather="file" class="ml-2">تم انهائها</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{route('users.index')}}">
-                        <i class="fas fa-users"></i>
-                        <span data-feather="file" class="ml-2">إدارة المستخدمين</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{route('add')}}">
-                        <i class="fas fa-user-plus"></i>
-                        <span data-feather="file" class="ml-2">إضافة مستخدم</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">
-                        <i class="fas fa-file-contract "></i>
-                        <span data-feather="file" class="ml-2">التقارير</span>
-                    </a>
-                </li>
-            </ul>
-        @else
-            <ul class="nav flex-column">
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+                @endguest
+                @auth
+                @if(auth()->user()->hasRole('مدير الصيدلة'))
+                    <li class="dropdown dropdown-notification nav-item  dropdown-notifications" >
+                        <a class="nav-link nav-link-label" href="{{url('PM_newReports')}}" data-toggle="dropdown" >
+                            <i class="fa fa-bell" style="color: white"> </i>
+                            <span
+                                class="badge badge-pill badge-default badge-danger badge-default badge-up badge-glow
+                                 notif-count" data-count="0" style="background-color: white ; color: #0F122D">0</span>
+                        </a>
+                               <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right" style="background-color: white ; color: #0F122D">
+                                                    <li class="scrollable-container ps-container ps-active-y media-list w-100" style="background-color: white ; color: #0F122D">
+                                                        <a href="{{route('PM_newReports')}}">
+                                                            <div class="media" style="background-color: white ; color: #0F122D">
+                                                                <div class="media-body" style="background-color: white ; color: #0F122D">
+                                                                    <h6 class="media-heading text-right " style="background-color: white ; color: #0F122D; margin-left: 30%">اطلاع </h6>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+
+                                                    </li>
+                                                </ul>
+                    </li>
+
+                    @endif
+                    @endauth
 
             </ul>
-        @endif
+        </div>
     </div>
 </nav>
-
-{{--sidebarMenu--}}

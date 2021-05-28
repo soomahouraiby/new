@@ -23,7 +23,7 @@ class CreateCommercialDrugsTable extends Migration
             $table->string('photo',191);
             $table->longText('how_use');
             $table->longText('side_effects');
-            $table->string('drug_form',50);
+            $table->integer('drug_form');
             $table->longText('prevents_use');
             $table->foreignId('company_id')->constrained('companies')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('agent_id')->constrained('agents')->onDelete('cascade')->onUpdate('cascade');

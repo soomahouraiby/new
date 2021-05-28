@@ -31,7 +31,7 @@ Route::group(['namespace'=>'Management'],function (){
     Route::get('/users','UsersController@index')->name('users.index');
     Route::get('/edit/{id}','UsersController@edit')->name('users.edit');
     Route::post('/update/{id}','UsersController@update')->name('users.update');
-    Route::get('/add','UsersController@add')->name('add');
+    Route::get('/add-user','UsersController@add')->name('add');
     Route::post('/insert','UsersController@insert')->name('users.insert');
 
 
@@ -45,9 +45,57 @@ Route::group(['namespace'=>'Management'],function (){
     Route::get('/DoneReports','ManagementController@showDoneReports')->name('showDoneReports');
 
     ///////////////////Details///////////////
+    // Route::get('/add-drug','ManagementController@detailsDrug')->name('detailsDrug');
+
     Route::get('/report/{report_no}','ManagementController@report')->name('report');
     Route::get('/details_Report/{report_no}','ManagementController@detailsReport')->name('details');
     Route::get('/drug/{report_no}','ManagementController@detailsDrug')->name('detailsDrug');
+    Route::get('/batch_numbers','ManagementController@batch_numbers')->name('batch_numbers');
+    Route::get('/batch_numbers/delete/{id}','ManagementController@batch_numbers_delete')->name('batch_numbers_delete');
+    Route::get('/batch_numbers/add','ManagementController@batch_numbers_add')->name('batch_numbers_add');
+    Route::post('/batch_numbers/insert','ManagementController@batch_numbers_insert')->name('batch_numbers_insert');
+    Route::get('/batch_numbers/edite/{id}','ManagementController@batch_numbers_edite')->name('batch_numbers_edite');
+    Route::post('/batch_numbers/update/{id}','ManagementController@batch_numbers_update')->name('batch_numbers_update');
+
+            Route::get('/drugs','ManagementController@all_drugs')->name('all_drugs');
+            Route::get('/drugs/delete/{id}','ManagementController@drugs_delete')->name('drugs_delete');
+            Route::get('/drugs/add','ManagementController@drugs_add')->name('drugs_add');
+            Route::post('/drugs/insert','ManagementController@drugs_insert')->name('drugs_insert');
+            Route::get('/drugs/edite/{id}','ManagementController@drugs_edite')->name('drugs_edite');
+            Route::post('/drugs/update/{id}','ManagementController@drugs_update')->name('drugs_update');
+
+
+    // Start drugs companies
+        Route::get('/drugs/companies','ManagementController@all_companies')->name('all_companies');
+        Route::get('/drugs/companies/add','ManagementController@companies_add')->name('companies_add');
+        Route::post('/drugs/companies/insert','ManagementController@companies_insert')->name('companies_insert');
+        Route::get('/drugs/companies/delete/{id}','ManagementController@companies_delete')->name('companies_delete');
+        Route::get('/drugs/companies/edite/{id}','ManagementController@companies_edite')->name('companies_edite');
+        Route::post('/drugs/companies/update/{id}','ManagementController@companies_update')->name('companies_update');
+     // End drugs companies
+
+     // Start drugs agents
+         Route::get('/drugs/agents','ManagementController@all_agents')->name('all_agents');
+         Route::get('/drugs/agents/add','ManagementController@agents_add')->name('agents_add');
+         Route::post('/drugs/agents/insert','ManagementController@agents_insert')->name('agents_insert');
+         Route::get('/drugs/agents/delete/{id}','ManagementController@agents_delete')->name('agents_delete');
+         Route::get('/drugs/agents/edite/{id}','ManagementController@agents_edite')->name('agents_edite');
+         Route::post('/drugs/agents/update/{id}','ManagementController@agents_update')->name('agents_update');
+     // End drugs agents
+
+     // Start drugs effective materials
+     Route::get('/drugs/effective-materials','ManagementController@all_effective_materials')->name('all_effective_materials');
+     Route::get('/drugs/effective-materials/add','ManagementController@effective_materials_add')->name('effective_materials_add');
+     Route::post('/drugs/effective-materials/insert','ManagementController@effective_materials_insert')->name('effective_materials_insert');
+     Route::get('/drugs/effective-materials/delete/{id}','ManagementController@effective_materials_delete')->name('effective_materials_delete');
+     Route::get('/drugs/effective-materials/edite/{id}','ManagementController@effective_materials_edite')->name('effective_materials_edite');
+     Route::post('/drugs/effective-materials/update/{id}','ManagementController@effective_materials_update')->name('effective_materials_update');
+     // End drugs effective materials
+
+
+
+    // Ajax
+    Route::get('/load_ajax/{table}','ManagementController@load_ajax')->name('load_ajax');
 
 
 
@@ -84,7 +132,7 @@ Route::group(['namespace'=>'pharmacyManagement'],function (){
     Route::post('/addProcedure/{report_no}','ManageController@addProcedure')->name('PM_addProcedure');
 
     ///////////////////Drug///////////////
-    Route::get('/drug','ManageController@drug')->name('PM_drug');
+    Route::get('/drug','ManageController@all_drugs')->name('PM_drug');
     Route::post('/addDrug','ManageController@addDrug')->name('PM_addDrug');
 
 

@@ -2,7 +2,7 @@
 @section('content')
 
     {{--Title--}}
-    <main class="col-md-8 ms-sm-auto col-lg-10 px-md-4 ">
+    <main >
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 pr-2  border-bottom main " >
             <h1 class="h2  ml-4">إضافة دواء </h1>
         </div>
@@ -22,9 +22,13 @@
             </div>
             <form method="POST" action="{{route('PM_addDrug')}}">
                 @csrf
+                <?php
+                print_r($drug);
+                exit();
+                ?>
 
-                <input name="drug_no" type="hidden" value="{{$drug->drug_no + 1}}">
-                <input name="shipment_no" type="hidden" value="{{$shipment->shipment_no + 1}}">
+                <input name="drug_no" type="hidden" value="{{$drug->id + 1}}">
+                <input name="shipment_no" type="hidden" value="">
 
                  <div class="card-body position-relative mb-0 pb-0" style="background-color: #F9F9F9;">
                 <div class="row pb-5">
@@ -64,7 +68,7 @@
                             <select  class="form-control" name="agent_no" >
                                 @if(isset($agents))
                                     @foreach($agents as $agent)
-                                        <option value="{{$agent->agent_no}}">{{$agent->agent_name}}</option>
+                                        <option value="{{$agent->id}}">{{$agent->name}}</option>
                                     @endforeach
                                 @endif
                             </select>
@@ -74,7 +78,7 @@
                             <select class="form-control" name="company_no">
                                 @if(isset($companies))
                                     @foreach($companies as $company)
-                                        <option value="{{$company->company_no}}">{{$company->company_name}}</option>
+                                        <option value="{{$company->id}}">{{$company->name}}</option>
                                     @endforeach
                                 @endif
                             </select>
@@ -86,7 +90,7 @@
                             <select class="form-control" name="material_no">
                                 @if(isset($materials))
                                     @foreach($materials as $material)
-                                        <option value="{{$material->material_no}}">{{$material->material_name}}</option>
+                                        <option value="{{$material->id}}">{{$material->name}}</option>
                                     @endforeach
                                 @endif
                             </select>

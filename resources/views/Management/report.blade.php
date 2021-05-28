@@ -7,7 +7,7 @@
     {{--            {{Session::get('saved')}}--}}
     {{--        </div>--}}
     {{--    @endif--}}
-    <main class="col-md-8 ms-sm-auto col-lg-10 px-md-4 ">
+    <main >
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 pr-2  border-bottom main " >
             <h1 class="h2  ml-4">تفاصيل البلاغ</h1>
             <div class="btn-toolbar ">

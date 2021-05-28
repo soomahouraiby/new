@@ -9,14 +9,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!--Bootstrap-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> --}}
     <link rel="stylesheet" href="{{asset('/css/bootstrap-rtl.css')}}">
-    <!-- <link rel="stylesheet" href="../css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}">
 
     <!--Fontawesome-->
     <link rel="stylesheet" href="{{asset('/css/font/all.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/boxicons.min.css')}}">
 
     <!--Custom-->
+    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/navbar-min.css') }}" rel="stylesheet">
+
     <link rel="stylesheet" href="{{asset('/css/style.css')}}">
 
 </head>
@@ -24,25 +28,29 @@
 <body>
 
 
+
+<div class="d-flex" id="wrapper">
+
 {{--Navbar--}}
-@include('include.header')
+
+        @include('include.header')
 
 
-
-
-<div class="container-fluid ">
-    <div class="row ">
+<!-- Page content wrapper-->
+<div id="page-content-wrapper">
 
         {{--List--}}
-
-        @if(auth()->user())
+{{--
+        @if(auth()->user()) --}}
             @include('include.sidebarMenu')
-        @endif
+        {{-- @endif --}}
 
+        <!-- Page content-->
+        <div class="container-fluid">
         {{--Content--}}
         @yield('content')
 
-
+        </div>
 
     </div>
 </div>
@@ -50,11 +58,11 @@
 
 
 <!--jquery and Bootstrap.js-->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+<script src="{{asset('js/jquery-3.5.1.min.js')}}"></script>
+<script src="{{asset('js/popper.min.js')}}"></script>
+<script src="{{asset('js/bootstrap.min.js')}}"></script>
+<script src="{{asset('js/pusher.min.js')}}"></script>
+<script src="{{asset('js/bootbox.min.js')}}"></script>
 <script>
 
     // Enable pusher logging - don't include this in production
@@ -72,6 +80,9 @@
 </script>
 
 <script src="{{asset('js/pusherNotifications.js')}}"></script>
+<script src="{{asset('js/select2.min.js')}}"></script>
+<script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('js/main.js')}}"></script>
 
 
 </body>

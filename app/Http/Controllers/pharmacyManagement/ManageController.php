@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\pharmacyManagement;
 
+use App\commercial_drug;
 use App\Http\Controllers\Controller;
 use App\Models\Procedures;
 use App\Models\Report;
@@ -14,12 +15,14 @@ use App\Request\ReportsRequest;
 use App\Models\Shipments;
 use App\Models\Combinations;
 use App\Models\Effective_materials;
+use App\Models\Shipment;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use ParagonIE\Sodium\Compat;
 use PharIo\Manifest\Type;
 use function PHPUnit\Framework\isEmpty;
 use function PHPUnit\Framework\isNull;
@@ -132,18 +135,15 @@ class ManageController extends Controller
 
 
     //////////////// [ Drug ..   ]  ////////////////
-    public function drug(){
-        $agents = DB::table('agents')->select('agents.agent_name','agents.agent_no')->get();
+    public function all_drugs(){
+        $agents =   DB::table('agents')->select('name','id')->get();
+        $companies = DB::table('companies')->select('name','id')->get();
+        $materials = DB::table('effective_materials')->select('id','name')->get();
+        $drug = Commercial_drug::orderByDesc('id')->first('id');
 
-        $companies = DB::table('companies')->select('companies.company_name','companies.company_no')->get();
-
-        $materials = DB::table('effective_material')->select('effective_material.material_no','effective_material.material_name')->get();
-
-        $drug=Commercial_drugs::orderByDesc('drug_no')->first('drug_no');
-        $shipment=Shipments::orderByDesc('shipment_no')->first('shipment_no');
-
-
-        return view('pharmacyManagement.addDrug',compact('agents','companies','materials','drug','shipment'));
+        $shipment=Shipment::orderByDesc('id')->first('id');
+        print_r($drug );
+        // return view('pharmacyManagement.addDrug',compact('agents','companies','materials','drug','shipment'));
     }
 
     //////////////// [ Drug ..  اضافة دواء ]  ////////////////

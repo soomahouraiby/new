@@ -25,6 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $active_sidebar = 'home';
+        return view('home', compact('active_sidebar'));
     }
 }

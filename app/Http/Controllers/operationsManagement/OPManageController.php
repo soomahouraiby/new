@@ -43,8 +43,8 @@ class OPManageController extends Controller
             ->where('state','=',0)
             ->where('types_reports.name','!=','جودة')
             ->get();
-
-        return view('operationsManagement.newReports', compact('reports'));
+            $active_sidebar  = 'newReports';
+        return view('operationsManagement.newReports', compact('reports', 'active_sidebar'));
 
     }
 
@@ -284,6 +284,7 @@ class OPManageController extends Controller
             ->where('types_reports.name','=','مهرب')
             ->where('state','=',0)
             ->get();
+
 
         return view('operationsManagement.newReports', compact('reports'));
     }
