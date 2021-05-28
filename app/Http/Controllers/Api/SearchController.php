@@ -25,9 +25,7 @@ class SearchController extends Controller
         foreach($user_dis->get() as $dis_id){
             $list_user_dis[] = $dis_id->diseases_id;
         }
-        return $list_user_dis;
-
-
+        return  $list_user_dis;
     }
 
     public function batchnumber($batchnumber){
@@ -62,8 +60,7 @@ class SearchController extends Controller
         }
 
     }
-    return response()->json(['error'=> false, 'data'=> [$data_drugs] ], 200);
-
+    return response()->json([$data_drugs], 200);
     }
 
     public function barcode( $barcode){
@@ -102,8 +99,7 @@ class SearchController extends Controller
            }
 
        }
-       return response()->json(['error'=> false, 'data'=> [$data_drugs] ], 200);
-
+       return response()->json([$data_drugs], 200);
 
     }
 
@@ -153,9 +149,7 @@ class SearchController extends Controller
         return response()->json(['error'=> true,
         'message' => 'لم يتم العثور على اي نتيجة' ], 401);
        }
-       return response()->json(['error'=> false, 'data'=> [$reservations] ], 200);
-
-
+        return   $reservations;
     }
 
 
@@ -212,8 +206,7 @@ class SearchController extends Controller
         return response()->json(['error'=> true,
         'message' => 'لم يتم العثور على اي نتيجة' ], 401);
        }
-       return response()->json(['error'=> false, 'data'=> [$reservations] ], 200);
-
+        return   $reservations;
     }
 
     public function alternate( $alternate){
@@ -270,8 +263,8 @@ class SearchController extends Controller
          return response()->json(['error'=> true,
          'message' => 'لم يتم العثور على اي نتيجة' ], 401);
         }
-        return response()->json(['error'=> false, 'data'=> [$reservations] ], 200);
-
-
+         return   $reservations;
     }
+
+
 }
