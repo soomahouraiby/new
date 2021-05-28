@@ -25,7 +25,7 @@ class SearchController extends Controller
         foreach($user_dis->get() as $dis_id){
             $list_user_dis[] = $dis_id->diseases_id;
         }
-        return response()->json(['error'=> false, 'data'=> [$list_user_dis] ], 200);
+        return $list_user_dis;
 
 
     }
