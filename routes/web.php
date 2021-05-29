@@ -177,6 +177,16 @@ Route::group(['namespace'=>'operationsManagement'],function (){
     Route::get('/OP_selectBNumber','OPManageController@selectBNumber')->name('OP_selectBNumber');
     Route::get('/OP_addReport','OPManageController@addReport')->name('OP_addReport');
     Route::post('OP_store', 'OPManageController@store')->name('OP_store');
+
+
+    ////////////////reports//////////////
+    Route::get('/OP_pdf/{id}','OPManageController@pdf')->name('OP_pdf');
+    Route::get('/OP_SmuggledReports','OPManageController@SmuggledReports')->name('OP_SmuggledReports');
+    Route::get('/OP_DrownReports','OPManageController@DrownReports')->name('OP_DrownReports');
+    Route::get('/OP_DiffrentReports','OPManageController@DiffrentReports')->name('OP_DiffrentReports');
+    Route::get('/OP_ExceptionReports','OPManageController@ExceptionReports')->name('OP_ExceptionReports');
+    Route::get('/OP_Reports','OPManageController@Reports')->name('OP_Reports');
+
 });
 ////////////////////////operations Management////////////////////////
 
@@ -206,6 +216,13 @@ Route::group(['namespace'=>'pharmacovigilanceManagement'],function (){
     ///////////////////Follow///////////////
     Route::get('/PHC_followedUp/{id}','PHCManageController@followedUp')->name('PHC_followedUp');
     Route::post('/PHC_store/{id}', 'PHCManageController@store')->name('PHC_store');
+
+
+////////////////////report//////////////////////////
+    Route::get('/PHC_pdf/{id}','PHCManageController@pdf')->name('PHC_pdf');
+    Route::get('/PHC_QualityReports','PHCManageController@QualityReports')->name('PHC_QualityReports');
+    Route::get('/PHC_EffectReports','PHCManageController@EffectReports')->name('PHC_EffectReports');
+    Route::get('/PHC_Reports','PHCManageController@Reports')->name('PHC_Reports');
 
 });
 ////////////////////////End pharmacovigilance Management////////////////////////
