@@ -44,8 +44,30 @@
                             <div class="form-group raw mt-4  ">
                                 <a class="text-center col-form-label mb-3"  href="{{route('OP_detailsReport',$report->report_no)}}" style="margin-right: 20%"> تفاصيل البلاغ</a>
                             </div>
+                            @break($report)
                         @endforeach
                     @endif
+                     @if(isset($reports2))
+                            @foreach($reports2 as $report2)
+                                <div class="form-group raw mt-2 " style="display: flex; flex-wrap: wrap;  ">
+                                    <label class="col-form-label Text ml-3 mr-4 ">اسم المبلغ : </label>
+                                    <label class="col-form-label  ml-2 mr-4  ">{{$report2 -> amount_name}}  </label>
+                                    <label class="col-form-label Text ml-5 mr-4 ">رقم الهاتف : </label>
+                                    <label class="col-form-label  ml-2 mr-4  ">{{$report2 -> phone}}  </label>
+                                </div>
+                                <div class="form-group raw mt-4  border-bottom " style="display: flex; flex-wrap: wrap; ">
+                                    <label class="col-form-label  Text ml-3 mr-4 ">نوع البلاغ : </label>
+                                    <label class="col-form-label  ml-2 mr-4 ">{{$report2 -> type_report}}  </label>
+                                    <label class="col-form-label Text  ml-5 mr-4 ">اسم الصيدلية : </label>
+                                    <label class="col-form-label ml-2 mr-4  ">{{$report2 -> pharmacy_title}}  </label>
+                                    <label class="col-form-label Text  ml-5 mr-4 ">تاريخ البلاغ : </label>
+                                    <label class="col-form-label ml-2 mr-4 mb-3  ">{{$report2 -> date}}  </label>
+                                </div>
+                                <div class="form-group raw mt-4  ">
+                                    <a class="text-center col-form-label mb-3"  href="{{route('OP_detailsReport',$report2->report_no)}}" style="margin-right: 20%"> تفاصيل البلاغ</a>
+                                </div>
+                            @endforeach
+                        @endif
                 </form>
             </div>
         </div>
@@ -80,8 +102,9 @@
                         @endif
                     @endforeach
                 </div>
-                @if($report->report_statuses == 'تم الانهاء')
+                @if(isset($reports))
                     @foreach($reports as $report)
+                        @if($report->report_statuses == 'تم الانهاء')
                         <div class="form-group raw col-lg-12 " style="display: flex; flex-wrap: wrap; ">
                             <label class="col-form-label col-lg-3  Text ml-3 ">  ملاحظة مدير العمليات : </label>
                             <label class="  col-lg-8 mt-2">{{$report -> opmanage_notes}}</label>
@@ -106,8 +129,8 @@
                             </div>
                         </div>
 
-                    @endforeach
-                @elseif($report->report_statuses == 'تمت المتابعة')
+
+                        @elseif($report->report_statuses == 'تمت المتابعة')
                         <button class="btn float-right mb-5 button" data-toggle="modal" data-target="#myModal" style="background-color: #0C63E4 ; color: #ffffff " >إنهاء البلاغ </button>
                         <div class="modal fade " id="myModal">
                             <div class="modal-dialog modal-dialog-centered">
@@ -127,6 +150,8 @@
                                 </div>
                             </div>
                         </div>
+                @endif
+                    @endforeach
                 @endif
             </div>
         </div>

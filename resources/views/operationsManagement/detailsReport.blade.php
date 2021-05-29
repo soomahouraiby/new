@@ -69,6 +69,28 @@
                                     </ul>
                                 @endforeach
                             @endif
+{{--                                @if(isset($reports2))--}}
+{{--                                    @foreach($reports2 as $report2)--}}
+{{--                                        <ul class="list-group list-group-flush" >--}}
+{{--                                            <li class="list-group-item" style="background-color: #F9F9F9;">--}}
+{{--                                                <label class="Text">الاسم : </label>--}}
+{{--                                                <label  class="ml-3">{{$report2 -> amount_name}}</label>--}}
+{{--                                            </li>--}}
+{{--                                            <li class="list-group-item" style="background-color: #F9F9F9;">--}}
+{{--                                                <label class="Text">رقم الهاتف : </label>--}}
+{{--                                                <label  class="ml-3">{{$report2 -> phone_user}}</label>--}}
+{{--                                            </li>--}}
+{{--                                            <li class="list-group-item"style="background-color: #F9F9F9;">--}}
+{{--                                                <label class="Text">العمر : </label>--}}
+{{--                                                <label  class="ml-3 mr-4">{{$report2 -> age}}</label>--}}
+{{--                                            </li>--}}
+{{--                                            <li class="list-group-item"style="background-color: #F9F9F9;">--}}
+{{--                                                <label class="Text"> الصفه : </label>--}}
+{{--                                                <label  class="ml-3">{{$report2 -> adjective}}</label>--}}
+{{--                                            </li>--}}
+{{--                                        </ul>--}}
+{{--                                    @endforeach--}}
+{{--                                @endif--}}
                         </div>
                     </div>
                 </div>
@@ -122,6 +144,8 @@
                     </div>
                     <div class="card-body">
                         <div class="row" >
+                            @if(isset($reports))
+                                @foreach($reports as $report)
                             @if($report -> type_report == 'مسحوب')
                                 @foreach($drugs as $drug)
                                     <ul class="list-group list-group-flush" >
@@ -162,44 +186,44 @@
                                     </ul>
                                 @endforeach
                             @elseif($report -> type_report == 'مهرب')
-                                @foreach($reports as $report)
+                                @foreach($report as $reports)
                                     <ul class="list-group list-group-flush" >
                                         <li class="list-group-item" style="background-color: #F9F9F9;">
                                             <label class="Text">الاسم التجاري: </label>
-                                            <label  class="ml-3">{{$report -> commercial_name}}</label>
+                                            <label  class="ml-3">{{$reports -> commercial_name}}</label>
                                         </li>
                                         <li class="list-group-item"style="background-color: #F9F9F9;">
                                             <label class="Text">الوكيل :</label>
-                                            <label  class="ml-3">{{$report -> agent_name}}</label>
+                                            <label  class="ml-3">{{$reports -> agent_name}}</label>
                                         </li>
                                         <li class="list-group-item"style="background-color: #F9F9F9;">
                                             <label class="Text">الشركة المصنعة :</label>
-                                            <label  class="ml-3">{{$report -> company_name}}</label></li>
+                                            <label  class="ml-3">{{$reports -> company_name}}</label></li>
 
                                         <li class="list-group-item"style="background-color: #F9F9F9;">
                                             <label class="Text">سعر الدواء في السوق :</label>
-                                            <label  class="ml-3">{{$report -> drug_price}}</label>
+                                            <label  class="ml-3">{{$reports -> drug_price}}</label>
                                         </li>
                                     </ul>
                                 @endforeach
                             @elseif($report -> type_report == 'غير مطابق')
-                                @foreach($reports as $report)
+                                @foreach($report as $reports)
                                     <ul class="list-group list-group-flush" >
                                         <li class="list-group-item" style="background-color: #F9F9F9;">
                                             <label class="Text">الاسم التجاري: </label>
-                                            <label  class="ml-3">{{$report -> commercial_name}}</label>
+                                            <label  class="ml-3">{{$reports -> commercial_name}}</label>
                                         </li>
                                         <li class="list-group-item"style="background-color: #F9F9F9;">
                                             <label class="Text">الوكيل :</label>
-                                            <label  class="ml-3">{{$report -> agent_name}}</label>
+                                            <label  class="ml-3">{{$reports -> agent_name}}</label>
                                         </li>
                                         <li class="list-group-item"style="background-color: #F9F9F9;">
                                             <label class="Text">الشركة المصنعة :</label>
-                                            <label  class="ml-3">{{$report -> company_name}}</label>
+                                            <label  class="ml-3">{{$reports -> company_name}}</label>
                                         </li>
                                         <li class="list-group-item"style="background-color: #F9F9F9;">
                                             <label class="Text">سعر الدواء في السوق :</label>
-                                            <label  class="ml-3">{{$report -> drug_price}}</label>
+                                            <label  class="ml-3">{{$reports -> drug_price}}</label>
                                         </li>
                                         @foreach($drugs as $drug)
                                             <li class="list-group-item"style="background-color: #F9F9F9;">
@@ -237,6 +261,8 @@
                                             </li>
                                         @endforeach
                                     </ul>
+                                @endforeach
+                            @endif
                                 @endforeach
                             @endif
                         </div>
