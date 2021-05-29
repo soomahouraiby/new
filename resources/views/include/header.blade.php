@@ -86,7 +86,7 @@ $active_sidebar = isset($active_sidebar)? $active_sidebar : 'home';
             </div>
 
         </div>
-        <a class="list-group-item list-group-item-action p-3  " href="#">
+        <a class="list-group-item list-group-item-action p-3  " href="{{route('OP_Reports')}}">
             <div>
                 <i class='bx bxs-detail nav_icon'></i>
                 <span class="nav_name">  التقارير </span></div>
@@ -217,7 +217,7 @@ $active_sidebar = isset($active_sidebar)? $active_sidebar : 'home';
             </div>
 
         </div>
-        <a class="list-group-item list-group-item-action p-3  " href="#">
+        <a class="list-group-item list-group-item-action p-3  " href="{{route('PHC_Reports')}}">
             <div>
                 <i class='bx bxs-detail nav_icon'></i>
                 <span class="nav_name">  التقارير </span></div>
