@@ -25,7 +25,10 @@
             </div>
             <div class="card-body position-relative mb-0 pb-0" style="background-color: #F9F9F9;">
                 <form>
-                    @if(isset($reports))
+                    @if(isset($r))
+                        @foreach($r as $rr)
+                    @if($rr->source==0)
+                        @if(isset($reports))
                         @foreach($reports as $report)
                             <div class="form-group raw mt-2 " style="display: flex; flex-wrap: wrap;  ">
                                 <label class="col-form-label Text ml-3 mr-4 ">اسم المبلغ : </label>
@@ -47,27 +50,31 @@
                             @break($report)
                         @endforeach
                     @endif
-                     @if(isset($reports2))
-                            @foreach($reports2 as $report2)
-                                <div class="form-group raw mt-2 " style="display: flex; flex-wrap: wrap;  ">
-                                    <label class="col-form-label Text ml-3 mr-4 ">اسم المبلغ : </label>
-                                    <label class="col-form-label  ml-2 mr-4  ">{{$report2 -> amount_name}}  </label>
-                                    <label class="col-form-label Text ml-5 mr-4 ">رقم الهاتف : </label>
-                                    <label class="col-form-label  ml-2 mr-4  ">{{$report2 -> phone}}  </label>
-                                </div>
-                                <div class="form-group raw mt-4  border-bottom " style="display: flex; flex-wrap: wrap; ">
-                                    <label class="col-form-label  Text ml-3 mr-4 ">نوع البلاغ : </label>
-                                    <label class="col-form-label  ml-2 mr-4 ">{{$report2 -> type_report}}  </label>
-                                    <label class="col-form-label Text  ml-5 mr-4 ">اسم الصيدلية : </label>
-                                    <label class="col-form-label ml-2 mr-4  ">{{$report2 -> pharmacy_title}}  </label>
-                                    <label class="col-form-label Text  ml-5 mr-4 ">تاريخ البلاغ : </label>
-                                    <label class="col-form-label ml-2 mr-4 mb-3  ">{{$report2 -> date}}  </label>
-                                </div>
-                                <div class="form-group raw mt-4  ">
-                                    <a class="text-center col-form-label mb-3"  href="{{route('OP_detailsReport',$report2->report_no)}}" style="margin-right: 20%"> تفاصيل البلاغ</a>
-                                </div>
-                            @endforeach
-                        @endif
+                    @elseif($rr->source==1)
+                        @if(isset($reports2))
+                                    @foreach($reports2 as $report2)
+                                        <div class="form-group raw mt-2 " style="display: flex; flex-wrap: wrap;  ">
+                                            <label class="col-form-label Text ml-3 mr-4 ">اسم المبلغ : </label>
+                                            <label class="col-form-label  ml-2 mr-4  ">{{$report2 -> amount_name}}  </label>
+                                            <label class="col-form-label Text ml-5 mr-4 ">رقم الهاتف : </label>
+                                            <label class="col-form-label  ml-2 mr-4  ">{{$report2 -> phone}}  </label>
+                                        </div>
+                                        <div class="form-group raw mt-4  border-bottom " style="display: flex; flex-wrap: wrap; ">
+                                            <label class="col-form-label  Text ml-3 mr-4 ">نوع البلاغ : </label>
+                                            <label class="col-form-label  ml-2 mr-4 ">{{$report2 -> type_report}}  </label>
+                                            <label class="col-form-label Text  ml-5 mr-4 ">اسم الصيدلية : </label>
+                                            <label class="col-form-label ml-2 mr-4  ">{{$report2 -> pharmacy_title}}  </label>
+                                            <label class="col-form-label Text  ml-5 mr-4 ">تاريخ البلاغ : </label>
+                                            <label class="col-form-label ml-2 mr-4 mb-3  ">{{$report2 -> date}}  </label>
+                                        </div>
+                                        <div class="form-group raw mt-4  ">
+                                            <a class="text-center col-form-label mb-3"  href="{{route('OP_detailsReport',$report2->report_no)}}" style="margin-right: 20%"> تفاصيل البلاغ</a>
+                                        </div>
+                                    @endforeach
+                                @endif
+                    @endif
+                        @endforeach
+                    @endif
                 </form>
             </div>
         </div>

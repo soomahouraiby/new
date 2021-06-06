@@ -168,8 +168,6 @@ class OPManageController extends Controller
 
 
 
-
-
     //////////////// [ Details ..  بلاغ وارد ]  ////////////////
     public function detailsReport($id){
 
@@ -177,6 +175,12 @@ class OPManageController extends Controller
             ->where('id','=', $id)->get();
         if (!$report)
             return redirect()->back();
+
+        $r = DB::table('reports')
+            ->select('reports.id as report_no','reports.source')
+
+            ->where('reports.id','=', $id)->get();
+
 
         $reports = DB::table('reports')
             ->join('types_reports', 'reports.types_report_id', '=', 'types_reports.id')
@@ -196,7 +200,7 @@ class OPManageController extends Controller
             ->select('reports.id','reports.state','reports.drug_photo','reports.notes_user', 'reports.date',
                 'reports.drug_price','reports.commercial_name','reports.company_name','reports.agent_name',
                 'reports.site_dec','reports.neig_name','reports.pharmacy_title','reports.street_name',
-                'reports.amount_name ', 'reports.phone as phone_user', 'reports.adjective'
+                'reports.amount_name', 'reports.phone as phone_user', 'reports.adjective'
                 , 'reports.age','reports.report_statuses',
                 'types_reports.name as type_report')
             ->where('reports.id', '=', $id)->get();
@@ -220,7 +224,7 @@ class OPManageController extends Controller
                 ->where('batch_numbers.batch_num','=', $batch->batch_number)->get();
         }
 
-        return view('operationsManagement.detailsReport', compact('reports' ,'drugs','reports2'));
+        return view('operationsManagement.detailsReport', compact('reports' ,'drugs','reports2','r'));
 
     }
 
@@ -231,6 +235,12 @@ class OPManageController extends Controller
             ->where('reports.id','=', $report_no)->get();  // search in given table id only
         if (!$report)
             return redirect()->back();
+
+        $r = DB::table('reports')
+            ->select('reports.id as report_no','reports.source')
+
+            ->where('reports.id','=', $report_no)->get();
+
 
         $reports = DB::table('reports')
             ->join('types_reports', 'reports.types_report_id', '=', 'types_reports.id')
@@ -260,7 +270,7 @@ class OPManageController extends Controller
             ->where('procedures.report_id','=',$report_no)->get();
 
 //       return $reports;
-        return view('operationsManagement.followedUp',compact('reports','procedures','reports2'));
+        return view('operationsManagement.followedUp',compact('reports','procedures','reports2','r'));
     }
 
     //////////////// [ Details ..  الدواء ]  ////////////////
